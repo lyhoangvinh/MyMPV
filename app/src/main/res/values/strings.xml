@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">My MVP</string>
+    <string name="get_data_volley">Get Data Volley</string>
+    <string name="get_data_retrofit">Get Data Retrofit</string>
+    <string name="clear">Clear Data</string>
+    <string name="my_address">My Address</string>
+</resources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv"
+        android:text="@string/my_address"
+        style="@style/txt"
+        />
+
+    <Button
+        android:id="@+id/btnVolley"
+        android:text="@string/get_data_volley"
+        style="@style/btn" />
+
+    <Button
+        android:id="@+id/btnRetrofit"
+        android:text="@string/get_data_retrofit"
+        style="@style/btn" />
+    <Button
+        android:id="@+id/btnClear"
+        android:text="@string/clear"
+        style="@style/btn" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcvAddress"
+        android:layout_marginTop="@dimen/txt_10sp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

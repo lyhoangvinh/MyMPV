@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="navigation_bar_color">#4A4A4A</color>
+    <color name="gray_color">#f6f6f6</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="transparent_white_30">#4dffffff</color>
+    <color name="transparent_white_50">#80ffffff</color>
+    <color name="transparent_white_60">#99ffffff</color>
+    <color name="transparent_white_90">#e6ffffff</color>
+
+    <color name="transparent_black_30">#4d000000</color>
+    <color name="transparent_black_50">#80000000</color>
+    <color name="transparent_black_60">#99000000</color>
+    <color name="transparent_black_90">#e6000000</color>
+    <color name="black_trans_50">#80000000</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="white_hint">#e1e1e1</color>
+    <color name="white_press">#f4f4f4</color>
+    <color name="red">#ef4749</color>
+
+    <color name="MAUVANG">#c57657</color>
+    <color name="main_color">#4A4A4A</color>
+    <color name="main_color_press_darker">#ef4749</color>
+    <color name="main_color_press">#ef4749</color>
+    <color name="main_color_press_white">#80ffffff</color>
+
+    <color name="red_main">#ef4749</color>
+    <color name="red_main_press">#ef4749</color>
+
+    <color name="fb_color">#3e5b9a</color>
+    <color name="fb_color_press">#803e5b9a</color>
+
+    <color name="menu_bg_top">#ef4749</color>
+    <color name="menu_gradient_top">#ef4749</color>
+    <color name="menu_gradient_bottom">#f6f6f6</color>
+
+    <color name="divider">#dcdcdc</color>
+    <color name="bg_profile_left_menu">#f2f2f2</color>
+    <color name="bg_transaction_light">#fff1e6</color>
+    <color name="bg_transaction_dark">#ffdbc1</color>
+    <color name="pink_light">#fee5e5</color>
+    <color name="pink_dark">#ffdada</color>
+    <color name="yellow_add_cart">#ef4749</color>
+    <color name="yellow_add_cart_press">#ef4749</color>
+
+    <color name="reward_bg_label">#f4faea</color>
+    <color name="reward_txt_label">#00a651</color>
+
+    <color name="txt_black_77">#777777</color>
+    <color name="txt_black_55">#555555</color>
+    <color name="txt_black_55_hint">#c1c1c1</color>
+    <color name="txt_black_33">#333333</color>
+    <color name="txt_black_96">#969696</color>
+    <color name="txt_black">#000000</color>
+    <color name="txt_label">#acacac</color>
+    <!--<color name="txt_menu">#ffdb96</color>-->
+    <color name="txt_menu">#333333</color>
+</resources>
