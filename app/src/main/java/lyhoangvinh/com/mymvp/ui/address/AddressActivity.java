@@ -17,6 +17,7 @@ import lyhoangvinh.com.mymvp.R;
 import lyhoangvinh.com.mymvp.model.base.activity.BaseActivity;
 import lyhoangvinh.com.mymvp.model.object.Address;
 import lyhoangvinh.com.mymvp.ui.adapter.AddressAdapter;
+import lyhoangvinh.com.mymvp.utils.Functions;
 
 /**
  * Created by LyHoangVinh on 21/03/2018.
@@ -49,6 +50,9 @@ public class AddressActivity extends BaseActivity implements AddressView {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         rcv.setLayoutManager(layoutManager);
         rcv.setAdapter(AddressAdapter.getInstance(listAdd));
+        if (Functions.getUser() != null){
+            tv.setText(Functions.getUser().getFullName());
+        }
     }
 
     @Optional

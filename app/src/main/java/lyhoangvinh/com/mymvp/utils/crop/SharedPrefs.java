@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import lyhoangvinh.com.mymvp.MyApplication;
 
 /**
- * Created by ADMIN on 11/5/2017.
+ * Created by LyHoangVinh on 11/5/2017.
  */
 
 public class SharedPrefs {

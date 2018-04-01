@@ -33,6 +33,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        mSelf = this;
         mGSon = new Gson();
         Realm.init(this);
         RealmConfiguration configuration = new RealmConfiguration.Builder().build();

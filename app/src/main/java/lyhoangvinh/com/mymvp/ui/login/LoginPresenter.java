@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 
 import lyhoangvinh.com.mymvp.model.base.presenter.BasePresenter;
 import lyhoangvinh.com.mymvp.model.base.request.LoginRequest;
+import lyhoangvinh.com.mymvp.utils.Functions;
 
 /**
  * Created by LyHoangVinh on 01/04/2018.
@@ -20,6 +21,7 @@ public class LoginPresenter extends BasePresenter<LoginView> implements IPresent
         addRequestRx(getRxService().login(new LoginRequest(email, password)), true, user -> {
             if (getView() != null && user != null) {
                 getView().loginSuccess(user.getFullName());
+                Functions.saveUser(user);
             }
         });
     }
