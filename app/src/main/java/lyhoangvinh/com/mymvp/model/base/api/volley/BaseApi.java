@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import lyhoangvinh.com.mymvp.Constant.ConstantsApi;
+import lyhoangvinh.com.mymvp.utils.Functions;
 
 /**
  * Created by LyHoangVinh on 21/03/2018.
@@ -37,7 +38,7 @@ public class BaseApi {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put(ConstantsApi.RQ_TOKEN, ConstantsApi.TOKEN);
+                params.put(ConstantsApi.RQ_TOKEN, Functions.getUser().getToken());
                 return params;
             }
         };

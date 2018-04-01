@@ -1,39 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv"
-        android:text="@string/my_address"
-        style="@style/txt" />
-
-    <Button
-        android:id="@+id/btnVolley"
-        android:text="@string/get_data_volley"
-        style="@style/btn" />
-
-    <Button
-        android:id="@+id/btnRetrofit"
-        android:text="@string/get_data_retrofit"
-        style="@style/btn" />
-
-    <Button
-        android:id="@+id/btnClear"
-        android:text="@string/clear"
-        style="@style/btn" />
-
-    <Button
-        android:id="@+id/btnRx"
-        android:text="@string/get_data_rx"
-        style="@style/btn" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rcvAddress"
-        android:layout_marginTop="@dimen/txt_10sp"
+    <RelativeLayout
+        android:id="@+id/rlAddress"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/tv"
+                style="@style/txt"
+                android:text="@string/my_address" />
+
+            <Button
+                android:id="@+id/btnVolley"
+                style="@style/btn"
+                android:text="@string/get_data_volley" />
+
+            <Button
+                android:id="@+id/btnRetrofit"
+                style="@style/btn"
+                android:text="@string/get_data_retrofit" />
+
+            <Button
+                android:id="@+id/btnClear"
+                style="@style/btn"
+                android:text="@string/clear" />
+
+            <Button
+                android:id="@+id/btnRx"
+                style="@style/btn"
+                android:text="@string/get_data_rx" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rcvAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/txt_10sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:layout_gravity="bottom"
+            android:id="@+id/btnLogout"
+            style="@style/btn"
+            android:text="@string/logout" />
+    </RelativeLayout>
+
+</RelativeLayout>

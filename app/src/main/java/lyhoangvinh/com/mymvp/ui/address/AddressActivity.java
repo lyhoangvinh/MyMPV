@@ -1,5 +1,6 @@
 package lyhoangvinh.com.mymvp.ui.address;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import lyhoangvinh.com.mymvp.R;
 import lyhoangvinh.com.mymvp.model.base.activity.BaseActivity;
 import lyhoangvinh.com.mymvp.model.object.Address;
 import lyhoangvinh.com.mymvp.ui.adapter.AddressAdapter;
+import lyhoangvinh.com.mymvp.ui.login.LoginActivity;
 import lyhoangvinh.com.mymvp.utils.Functions;
 
 /**
@@ -33,7 +35,6 @@ public class AddressActivity extends BaseActivity implements AddressView {
 
     private AddressPresenter presenter;
     private Realm realm;
-    private List<Address> listAdd;
 
     @Override
     protected int getLayout() {
@@ -43,13 +44,11 @@ public class AddressActivity extends BaseActivity implements AddressView {
     @Override
     protected void bind() {
         realm = Realm.getDefaultInstance();
-        listAdd = new ArrayList<>();
         presenter = new AddressPresenter(this, this);
         assert rcv != null;
         rcv.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         rcv.setLayoutManager(layoutManager);
-        rcv.setAdapter(AddressAdapter.getInstance(listAdd));
         if (Functions.getUser() != null){
             tv.setText(Functions.getUser().getFullName());
         }
@@ -70,8 +69,7 @@ public class AddressActivity extends BaseActivity implements AddressView {
     @Optional
     @OnClick(R.id.btnClear)
     public void clear() {
-        listAdd.clear();
-        AddressAdapter.getInstance(listAdd).notifyDataSetChanged();
+        AddressAdapter.getInstance(new ArrayList<>());
     }
 
     @Optional
@@ -80,12 +78,18 @@ public class AddressActivity extends BaseActivity implements AddressView {
         presenter.loadDataRx();
     }
 
+    @Optional
+    @OnClick(R.id.btnLogout)
+    public void logout(){
+        Functions.clearData();
+        startActivity(new Intent(AddressActivity.this, LoginActivity.class));
+        finish();
+    }
+
     @Override
     public void loadAddressManager(List<Address> list) {
         if (list != null) {
-            listAdd.clear();
-            listAdd.addAll(list);
-            AddressAdapter.getInstance(listAdd).notifyDataSetChanged();
+            rcv.setAdapter(AddressAdapter.getInstance(list));
             showToastOk("Get Data Complete");
         }
     }
@@ -139,9 +143,7 @@ public class AddressActivity extends BaseActivity implements AddressView {
             if (addresses.size() == 0) {
                 showToastError("Null");
             } else {
-                listAdd.clear();
-                listAdd.addAll(addresses);
-                AddressAdapter.getInstance(listAdd).notifyDataSetChanged();
+                AddressAdapter.getInstance(addresses).notifyDataSetChanged();
                 showToastInfo("Realm: " + addresses.size());
             }
         } else {

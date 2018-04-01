@@ -3,11 +3,11 @@ package lyhoangvinh.com.mymvp.ui.address;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import lyhoangvinh.com.mymvp.Constant.ConstantsApi;
 import lyhoangvinh.com.mymvp.model.base.presenter.BasePresenter;
 import lyhoangvinh.com.mymvp.model.base.request.BaseRequest;
 import lyhoangvinh.com.mymvp.model.base.response.BaseResponse;
 import lyhoangvinh.com.mymvp.model.object.Data;
+import lyhoangvinh.com.mymvp.utils.Functions;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,7 +34,7 @@ public class AddressPresenter extends BasePresenter<AddressView> implements IPre
     @Override
     public void loadDataRetrofit() {
         showLoading();
-        BaseRequest request = new BaseRequest(ConstantsApi.TOKEN);
+        BaseRequest request = new BaseRequest(Functions.getUser().getToken());
         getApiService().getAddressTest(request).enqueue(new Callback<BaseResponse<Data>>() {
             @Override
             public void onResponse(Call<BaseResponse<Data>> call, Response<BaseResponse<Data>> response) {
@@ -53,7 +53,7 @@ public class AddressPresenter extends BasePresenter<AddressView> implements IPre
 
     @Override
     public void loadDataTest() {
-        addRequest(true, getApiService().getAddressTest(new BaseRequest(ConstantsApi.TOKEN)), data -> {
+        addRequest(true, getApiService().getAddressTest(new BaseRequest(Functions.getUser().getToken())), data -> {
             if (getView() != null && data != null) {
                 getView().loadAddressManager(data.getAddress());
             }
@@ -62,7 +62,7 @@ public class AddressPresenter extends BasePresenter<AddressView> implements IPre
 
     @Override
     public void loadDataRx() {
-        addRequestRx(getRxService().getAddress(new BaseRequest(ConstantsApi.TOKEN)), true, data -> {
+        addRequestRx(getRxService().getAddress(new BaseRequest(Functions.getUser().getToken())), true, data -> {
             if (getView() != null && data != null){
                 getView().loadAddressManager(data.getAddress());
             }

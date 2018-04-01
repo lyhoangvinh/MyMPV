@@ -33,6 +33,11 @@ public class AddressAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public AddressAdapter(List<Address> list) {
         this.list = list;
+        notifyDataSetChanged();
+    }
+
+    public void removeList(){
+        list.clear();
     }
 
     @Override
