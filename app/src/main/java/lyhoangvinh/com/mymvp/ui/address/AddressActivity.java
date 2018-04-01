@@ -75,13 +75,19 @@ public class AddressActivity extends BaseActivity implements AddressView {
         AddressAdapter.getInstance(listAdd).notifyDataSetChanged();
     }
 
+    @Optional
+    @OnClick(R.id.btnRx)
+    public void rxJavaGetData(){
+        presenter.loadDataRx();
+    }
+
     @Override
     public void loadAddressManager(List<Address> list) {
         if (list != null) {
             listAdd.clear();
             listAdd.addAll(list);
             AddressAdapter.getInstance(listAdd).notifyDataSetChanged();
-            showToastOk("Get Data On");
+            showToastOk("Get Data Complete");
         }
     }
 

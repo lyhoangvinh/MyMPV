@@ -6,14 +6,21 @@ import android.support.annotation.Nullable;
 
 import java.util.List;
 
+import io.reactivex.Single;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import lyhoangvinh.com.mymvp.callback.AddressCallback;
 import lyhoangvinh.com.mymvp.callback.TankRunnable;
 import lyhoangvinh.com.mymvp.listener.OnResponseListener;
-import lyhoangvinh.com.mymvp.model.base.view.BaseView;
 import lyhoangvinh.com.mymvp.model.base.api.retrofit.ApiClient;
 import lyhoangvinh.com.mymvp.model.base.api.retrofit.ApiService;
+import lyhoangvinh.com.mymvp.model.base.api.rx.RxClient;
+import lyhoangvinh.com.mymvp.model.base.api.rx.RxService;
+import lyhoangvinh.com.mymvp.model.base.api.utils.ApiUtils;
 import lyhoangvinh.com.mymvp.model.base.api.volley.BaseApi;
 import lyhoangvinh.com.mymvp.model.base.response.BaseResponse;
+import lyhoangvinh.com.mymvp.model.base.view.BaseView;
+import lyhoangvinh.com.mymvp.model.base.view.ErrorEntity;
 import lyhoangvinh.com.mymvp.model.object.Address;
 import lyhoangvinh.com.mymvp.thread.BackgroundThreadExecutor;
 import lyhoangvinh.com.mymvp.thread.UIThreadExecutor;
@@ -30,10 +37,12 @@ public class BasePresenter<V extends BaseView> {
     private V mView;
 
     protected Context context;
+    private CompositeDisposable mCompositeDisposable;
 
     public BasePresenter(Context context, @NonNull V view) {
         this.context = context;
         this.mView = view;
+        mCompositeDisposable = new CompositeDisposable();
     }
 
     public V getView() {
@@ -44,13 +53,19 @@ public class BasePresenter<V extends BaseView> {
         this.mView = view;
     }
 
-    public ApiService getApiService() {
+    protected ApiService getApiService() {
         return ApiClient.getInstance().create(ApiService.class);
     }
 
-    public BaseApi getBaseApiVolley(){
+    private BaseApi getBaseApiVolley(){
         return BaseApi.getInstance(context);
     }
+
+    protected RxService getRxService(){
+        return RxClient.getInstance().create(RxService.class);
+    }
+
+    //----------------------------------Retrofit----------------------------------------------------
 
     protected <T> void addRequest(boolean showLoading, Call<BaseResponse<T>> response, OnResponseListener<T> listener) {
         if (showLoading && getView() != null) {
@@ -76,7 +91,59 @@ public class BasePresenter<V extends BaseView> {
             }
         });
     }
+    //----------------------------------End-Retrofit----------------------------------------------------
 
+    //----------------------------------rx2---------------------------------------------------------
+    private <T> void addRequestRx(
+            Single<BaseResponse<T>> request, boolean showProgress,
+            boolean forceResponseWithoutCheckNullView,
+            @Nullable OnResponseListener<T> listener,
+            @Nullable OnResponseListener<ErrorEntity> errorConsumer) {
+
+        boolean shouldUpdateUI = showProgress || listener != null;
+
+        if (showProgress && getView() != null) {
+            mView.showLoading();
+        }
+
+        Disposable disposable = ApiUtils.makeRequest(request, shouldUpdateUI, response -> {
+            if (listener != null && (forceResponseWithoutCheckNullView || mView != null)) {
+                listener.onRespond(response);
+                if (showProgress) {
+                    getView().hideLoading();
+                }
+            }
+        }, error -> {
+//            if (getView() != null) {
+//                if (errorConsumer != null) {
+//                    errorConsumer.onRespond(error);
+//                    getView().hideLoading();
+//                } else {
+//                    mView.showError(error.getMessage());
+//                }
+//            }
+            if (getView()!=null){
+                getView().hideLoading();
+            }
+        });
+
+        if (mCompositeDisposable.isDisposed()) {
+            mCompositeDisposable = new CompositeDisposable();
+        }
+        mCompositeDisposable.add(disposable);
+    }
+
+    /**
+     * Add a request with success listener
+     */
+    protected <T> void addRequestRx(Single<BaseResponse<T>> request, boolean showProgress,
+                                  @Nullable OnResponseListener<T> responseConsumer) {
+        addRequestRx(request, showProgress, false, responseConsumer, null);
+    }
+
+    //----------------------------------End-rx2---------------------------------------------------------
+
+    //----------------------------------Volley----------------------------------------------------------
     protected void addVolleyRequest(boolean showLoading, OnResponseListener<List<Address>> t) {
         if (showLoading && getView() != null) {
             getView().showLoading();
@@ -118,4 +185,5 @@ public class BasePresenter<V extends BaseView> {
             }
         });
     }
+    //----------------------------------End-Volley----------------------------------------------------------
 }

@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static Retrofit retrofit;
+    private static Retrofit retrofit;
 
     public static Retrofit getInstance(){
         if (retrofit == null){

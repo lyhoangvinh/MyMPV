@@ -4,4 +4,5 @@
     <string name="get_data_retrofit">Get Data Retrofit</string>
     <string name="clear">Clear Data</string>
     <string name="my_address">My Address</string>
+    <string name="get_data_rx">Get Data Rx</string>
 </resources>

@@ -8,8 +8,7 @@
     <TextView
         android:id="@+id/tv"
         android:text="@string/my_address"
-        style="@style/txt"
-        />
+        style="@style/txt" />
 
     <Button
         android:id="@+id/btnVolley"
@@ -20,9 +19,15 @@
         android:id="@+id/btnRetrofit"
         android:text="@string/get_data_retrofit"
         style="@style/btn" />
+
     <Button
         android:id="@+id/btnClear"
         android:text="@string/clear"
+        style="@style/btn" />
+
+    <Button
+        android:id="@+id/btnRx"
+        android:text="@string/get_data_rx"
         style="@style/btn" />
 
     <android.support.v7.widget.RecyclerView

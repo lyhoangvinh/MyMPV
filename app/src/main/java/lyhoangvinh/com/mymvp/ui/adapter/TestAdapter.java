@@ -19,11 +19,9 @@ import lyhoangvinh.com.mymvp.model.object.Address;
 public class TestAdapter extends BaseAdapter {
 
     private List<Address> list;
-    private Context context;
 
-    public TestAdapter(List<Address> list, Context context) {
+    public TestAdapter(List<Address> list) {
         this.list = list;
-        this.context = context;
     }
 
     @Override
@@ -49,7 +47,8 @@ public class TestAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder viewHolder;
         if (view == null){
-            view = LayoutInflater.from(context).inflate(R.layout.item_listview, null);
+            LayoutInflater inflater = (LayoutInflater) viewGroup.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(R.layout.item_listview, null);
             viewHolder = new ViewHolder();
             viewHolder.tv = view.findViewById(R.id.tvLable);
             view.setTag(viewHolder);

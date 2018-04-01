@@ -60,6 +60,15 @@ public class AddressPresenter extends BasePresenter<AddressView> implements IPre
         });
     }
 
+    @Override
+    public void loadDataRx() {
+        addRequestRx(getRxService().getAddress(new BaseRequest(ConstantsApi.TOKEN)), true, data -> {
+            if (getView() != null && data != null){
+                getView().loadAddressManager(data.getAddress());
+            }
+        });
+    }
+
     private void showLoading() {
         if (getView() != null) {
             getView().showLoading();

@@ -8,4 +8,5 @@ public interface IPresenterAdderss {
     void loadDataVolley();
     void loadDataRetrofit();
     void loadDataTest();
+    void loadDataRx();
 }

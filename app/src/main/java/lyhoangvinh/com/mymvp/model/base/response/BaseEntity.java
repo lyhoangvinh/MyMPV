@@ -4,11 +4,11 @@ public abstract class BaseEntity<T> {
 
     String status;
 
-//    String message;
+    String message;
 
     T data;
 
-//    public abstract boolean isSuccess();
+    public abstract boolean isSuccess();
 
 
     public String getStatus() {
@@ -19,4 +19,7 @@ public abstract class BaseEntity<T> {
         return data;
     }
 
+    public String getMessage() {
+        return message;
+    }
 }
