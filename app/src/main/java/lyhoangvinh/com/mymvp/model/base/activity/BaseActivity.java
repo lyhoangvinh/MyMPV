@@ -14,15 +14,13 @@ import android.widget.TextView;
 
 import butterknife.ButterKnife;
 import lyhoangvinh.com.mymvp.R;
-import lyhoangvinh.com.mymvp.dagger.InjectionHelper;
 import lyhoangvinh.com.mymvp.dagger.component.ActivityComponent;
-import lyhoangvinh.com.mymvp.dagger.component.DaggerActivityComponent;
-import lyhoangvinh.com.mymvp.dagger.module.ActivityModule;
+import lyhoangvinh.com.mymvp.model.base.view.BaseView;
 import lyhoangvinh.com.mymvp.thread.UIThreadExecutor;
 import lyhoangvinh.com.mymvp.ui.customview.SimpleToast;
 
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements BaseView {
 
     private Dialog progress_dialog = null;
 
@@ -36,24 +34,27 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(getLayout());
         ButterKnife.bind(this);
         uiThreadExecutor = UIThreadExecutor.getInstance();
+        bind();
     }
 
     protected abstract int getLayout();
 
+    protected abstract void bind();
+
     public ActivityComponent getComponent(){
-        if (component == null){
-            component = DaggerActivityComponent.builder()
-                    .activityModule(new ActivityModule(this))
-                    .appComponent(InjectionHelper.getAppComponent(this))
-                    .build();
-        }
-        return component;
+//        if (component == null){
+//            component = DaggerActivityComponent.builder()
+//                    .activityModule(new ActivityModule(this))
+//                    .appComponent(InjectionHelper.getAppComponent(this))
+//                    .build();
+//        }
+        return null;
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        component = null;
+//        component = null;
     }
 
     public void showProgressDialog(boolean cancelable) {
@@ -148,5 +149,23 @@ public abstract class BaseActivity extends AppCompatActivity {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnected();
+    }
+
+
+    @Override
+    public void showLoading() {
+        showProgressDialog(false);
+    }
+
+    @Override
+    public void hideLoading() {
+        hideProgressDialog();
+    }
+
+    @Override
+    public void showError(String message) {
+        if (message != null) {
+            showToastError(message);
+        }
     }
 }

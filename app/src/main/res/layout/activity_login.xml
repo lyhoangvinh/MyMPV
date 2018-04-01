@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="lyhoangvinh.com.mymvp.ui.login.LoginActivity">
+
+    <TextView
+        android:text="@string/login"
+        style="@style/txt" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/edtEmail"
+            android:hint="@string/email"
+            style="@style/edt" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/edtPass"
+            android:hint="@string/pass"
+            style="@style/edt" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btnLogin"
+            android:text="@string/go"
+            style="@style/btn" />
+    </android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

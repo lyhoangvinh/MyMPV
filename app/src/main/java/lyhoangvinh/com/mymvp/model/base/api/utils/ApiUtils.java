@@ -7,10 +7,13 @@ import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import lyhoangvinh.com.mymvp.Constant.ConstantsApi;
 import lyhoangvinh.com.mymvp.listener.OnResponseListener;
+import lyhoangvinh.com.mymvp.listener.OnResponseListenerTest;
 import lyhoangvinh.com.mymvp.model.base.response.BaseEntity;
 import lyhoangvinh.com.mymvp.model.base.response.BaseResponse;
 import lyhoangvinh.com.mymvp.model.base.view.ErrorEntity;
+import lyhoangvinh.com.mymvp.model.object.ResponseTest;
 
 /**
  * Created by lyhoangvinh on 9/10/17.
@@ -58,6 +61,36 @@ public final class ApiUtils {
 //                throw new Exception(throwable);
 //            }
             // handle error
+            throwable.printStackTrace();
+            if (errorConsumer != null) {
+                errorConsumer.onRespond(ErrorEntity.getError(throwable));
+            }
+        });
+    }
+
+    public static Disposable makeRequestTest(
+            Single<ResponseTest> request, boolean shouldUpdateUi,
+            @NonNull OnResponseListenerTest responseConsumer,
+            @Nullable OnResponseListener<ErrorEntity> errorConsumer) {
+
+        Single<ResponseTest> single = request.subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io());
+        if (shouldUpdateUi) {
+            single = single.observeOn(AndroidSchedulers.mainThread());
+        }
+
+        return single.subscribe(response -> {
+            if (response.getStatus().equals(ConstantsApi.STATUS_SUCCESS)) {
+                responseConsumer.onRespond(response);
+            } else if (errorConsumer != null) {
+                String message = null;
+                if (response.getMessage()!=null){
+                    message = response.getMessage();
+                }else {
+                    message = ErrorEntity.OOPS;
+                }
+                errorConsumer.onRespond(ErrorEntity.getError(message));
+            }
+        }, throwable -> {
             throwable.printStackTrace();
             if (errorConsumer != null) {
                 errorConsumer.onRespond(ErrorEntity.getError(throwable));

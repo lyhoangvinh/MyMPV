@@ -24,7 +24,7 @@ public class ErrorEntity {
 
     public static final String OOPS = "Oops! please try again";
     public static final String NETWORK_UNAVAILABLE = "Network problem!";
-    public static final String ERROR_UNAUTHORIZED = "Error! Please re-login!";
+    public static final String ERROR_UNAUTHORIZED = "Error! Please re-userLogin!";
 
     private String message = "";
     private int httpCode = 0;

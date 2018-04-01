@@ -19,5 +19,14 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
-    
+
+    <style name="edt">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/txt_15sp</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textColorHint">#808080</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:backgroundTint">#808080</item>
+    </style>
 </resources>

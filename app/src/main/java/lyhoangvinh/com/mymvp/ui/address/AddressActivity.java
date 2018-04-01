@@ -1,7 +1,5 @@
 package lyhoangvinh.com.mymvp.ui.address;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
@@ -26,11 +24,9 @@ import lyhoangvinh.com.mymvp.ui.adapter.AddressAdapter;
 
 public class AddressActivity extends BaseActivity implements AddressView {
 
-    @Nullable
     @BindView(R.id.rcvAddress)
     RecyclerView rcv;
 
-    @Nullable
     @BindView(R.id.tv)
     TextView tv;
 
@@ -44,8 +40,7 @@ public class AddressActivity extends BaseActivity implements AddressView {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void bind() {
         realm = Realm.getDefaultInstance();
         listAdd = new ArrayList<>();
         presenter = new AddressPresenter(this, this);
@@ -88,23 +83,6 @@ public class AddressActivity extends BaseActivity implements AddressView {
             listAdd.addAll(list);
             AddressAdapter.getInstance(listAdd).notifyDataSetChanged();
             showToastOk("Get Data Complete");
-        }
-    }
-
-    @Override
-    public void showLoading() {
-        showProgressDialog(false);
-    }
-
-    @Override
-    public void hideLoading() {
-        hideProgressDialog();
-    }
-
-    @Override
-    public void showError(String message) {
-        if (message != null) {
-            showToastError(message);
         }
     }
 

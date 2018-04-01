@@ -7,7 +7,7 @@ import javax.inject.Scope;
 
 /**
  * Created by Duy Pham on 05/17.
- * Scope for instances which be created after user login and until user logout
+ * Scope for instances which be created after user userLogin and until user logout
  */
 
 @Scope

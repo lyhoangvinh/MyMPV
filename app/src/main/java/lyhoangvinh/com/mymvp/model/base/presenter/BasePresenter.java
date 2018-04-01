@@ -12,6 +12,7 @@ import io.reactivex.disposables.Disposable;
 import lyhoangvinh.com.mymvp.callback.AddressCallback;
 import lyhoangvinh.com.mymvp.callback.TankRunnable;
 import lyhoangvinh.com.mymvp.listener.OnResponseListener;
+import lyhoangvinh.com.mymvp.listener.OnResponseListenerTest;
 import lyhoangvinh.com.mymvp.model.base.api.retrofit.ApiClient;
 import lyhoangvinh.com.mymvp.model.base.api.retrofit.ApiService;
 import lyhoangvinh.com.mymvp.model.base.api.rx.RxClient;
@@ -22,6 +23,7 @@ import lyhoangvinh.com.mymvp.model.base.response.BaseResponse;
 import lyhoangvinh.com.mymvp.model.base.view.BaseView;
 import lyhoangvinh.com.mymvp.model.base.view.ErrorEntity;
 import lyhoangvinh.com.mymvp.model.object.Address;
+import lyhoangvinh.com.mymvp.model.object.ResponseTest;
 import lyhoangvinh.com.mymvp.thread.BackgroundThreadExecutor;
 import lyhoangvinh.com.mymvp.thread.UIThreadExecutor;
 import retrofit2.Call;
@@ -57,11 +59,11 @@ public class BasePresenter<V extends BaseView> {
         return ApiClient.getInstance().create(ApiService.class);
     }
 
-    private BaseApi getBaseApiVolley(){
+    private BaseApi getBaseApiVolley() {
         return BaseApi.getInstance(context);
     }
 
-    protected RxService getRxService(){
+    protected RxService getRxService() {
         return RxClient.getInstance().create(RxService.class);
     }
 
@@ -75,17 +77,17 @@ public class BasePresenter<V extends BaseView> {
         response.enqueue(new Callback<BaseResponse<T>>() {
             @Override
             public void onResponse(Call<BaseResponse<T>> call, Response<BaseResponse<T>> response) {
-                if (showLoading && getView() !=null){
+                if (showLoading && getView() != null) {
                     getView().hideLoading();
                 }
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     listener.onRespond(response.body().getData());
                 }
             }
 
             @Override
             public void onFailure(Call<BaseResponse<T>> call, Throwable t) {
-                if (showLoading && getView() !=null){
+                if (showLoading && getView() != null) {
                     getView().hideLoading();
                 }
             }
@@ -103,27 +105,25 @@ public class BasePresenter<V extends BaseView> {
         boolean shouldUpdateUI = showProgress || listener != null;
 
         if (showProgress && getView() != null) {
-            mView.showLoading();
+            getView().showLoading();
         }
 
         Disposable disposable = ApiUtils.makeRequest(request, shouldUpdateUI, response -> {
-            if (listener != null && (forceResponseWithoutCheckNullView || mView != null)) {
+            if (listener != null && (forceResponseWithoutCheckNullView || getView() != null)) {
                 listener.onRespond(response);
                 if (showProgress) {
                     getView().hideLoading();
                 }
             }
         }, error -> {
-//            if (getView() != null) {
-//                if (errorConsumer != null) {
-//                    errorConsumer.onRespond(error);
-//                    getView().hideLoading();
-//                } else {
-//                    mView.showError(error.getMessage());
-//                }
-//            }
-            if (getView()!=null){
-                getView().hideLoading();
+            if (getView() != null) {
+                if (errorConsumer != null) {
+                    errorConsumer.onRespond(error);
+                    getView().hideLoading();
+                } else {
+                    getView().hideLoading();
+                    getView().showError(error.getMessage());
+                }
             }
         });
 
@@ -137,11 +137,57 @@ public class BasePresenter<V extends BaseView> {
      * Add a request with success listener
      */
     protected <T> void addRequestRx(Single<BaseResponse<T>> request, boolean showProgress,
-                                  @Nullable OnResponseListener<T> responseConsumer) {
+                                    @Nullable OnResponseListener<T> responseConsumer) {
         addRequestRx(request, showProgress, false, responseConsumer, null);
     }
 
     //----------------------------------End-rx2---------------------------------------------------------
+
+    //----------------------------------Text--------------------------------------------------------
+
+    protected void addRequestTest(Single<ResponseTest> request, boolean showProgress,
+                                  boolean forceResponseWithoutCheckNullView,
+                                  @NonNull OnResponseListenerTest listener,
+                                  @Nullable OnResponseListener<ErrorEntity> errorConsumer) {
+        boolean shouldUpdateUI = showProgress || listener != null;
+
+        if (showProgress && getView() != null) {
+            getView().showLoading();
+        }
+
+        Disposable disposable = ApiUtils.makeRequestTest(request, shouldUpdateUI, response -> {
+            if (listener != null && (forceResponseWithoutCheckNullView || getView() != null)) {
+                listener.onRespond(response);
+                if (showProgress) {
+                    getView().hideLoading();
+                }
+            }
+        }, error -> {
+            if (getView() != null) {
+                if (errorConsumer != null) {
+                    errorConsumer.onRespond(error);
+                    getView().hideLoading();
+                } else {
+                    getView().hideLoading();
+                    getView().showError(error.getMessage());
+                }
+            }
+        });
+
+        if (mCompositeDisposable.isDisposed()) {
+            mCompositeDisposable = new CompositeDisposable();
+        }
+        mCompositeDisposable.add(disposable);
+
+    }
+
+
+    protected void addRequestTest(Single<ResponseTest> request, boolean showProgress,
+                                  OnResponseListenerTest listener) {
+        addRequestTest(request, showProgress, false, listener, null);
+    }
+
+    //----------------------------------End-Text--------------------------------------------------------
 
     //----------------------------------Volley----------------------------------------------------------
     protected void addVolleyRequest(boolean showLoading, OnResponseListener<List<Address>> t) {

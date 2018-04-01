@@ -5,4 +5,8 @@
     <string name="clear">Clear Data</string>
     <string name="my_address">My Address</string>
     <string name="get_data_rx">Get Data Rx</string>
+    <string name="email">Email</string>
+    <string name="pass">Password</string>
+    <string name="login">Login</string>
+    <string name="go">Go</string>
 </resources>
