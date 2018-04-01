@@ -7,33 +7,48 @@
     tools:context="lyhoangvinh.com.mymvp.ui.login.LoginActivity">
 
     <TextView
-        android:text="@string/login"
-        style="@style/txt" />
+        style="@style/txt"
+        android:layout_marginTop="@dimen/dm_100dp"
+        android:text="@string/login" />
 
-    <android.support.design.widget.TextInputLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <EditText
-            android:id="@+id/edtEmail"
-            android:hint="@string/email"
-            style="@style/edt" />
-    </android.support.design.widget.TextInputLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dm_40dp"
+        android:layout_marginRight="@dimen/dm_40dp"
+        android:orientation="vertical">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <EditText
-            android:id="@+id/edtPass"
-            android:hint="@string/pass"
-            style="@style/edt" />
-    </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/txt_32sp">
 
-    <android.support.design.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/btnLogin"
-            android:text="@string/go"
-            style="@style/btn" />
-    </android.support.design.widget.CoordinatorLayout>
+            <EditText
+                android:id="@+id/edtEmail"
+                style="@style/edt"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/edtPass"
+                style="@style/edt"
+                android:hint="@string/pass"
+                android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnLogin"
+                style="@style/btn"
+                android:text="@string/go" />
+        </android.support.design.widget.CoordinatorLayout>
+    </LinearLayout>
 </LinearLayout>
