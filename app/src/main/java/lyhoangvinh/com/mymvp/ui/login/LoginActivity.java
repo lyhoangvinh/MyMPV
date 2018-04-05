@@ -55,4 +55,12 @@ public class LoginActivity extends BaseActivity implements LoginView {
     public void loginFaild(String message) {
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (presenter!=null){
+            presenter.onDestroy();
+        }
+    }
 }

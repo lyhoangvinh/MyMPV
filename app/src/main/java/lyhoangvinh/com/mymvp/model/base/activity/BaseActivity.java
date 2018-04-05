@@ -51,12 +51,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         return null;
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-//        component = null;
-    }
-
     public void showProgressDialog(boolean cancelable) {
         if (progress_dialog == null) {
             progress_dialog = new Dialog(BaseActivity.this);

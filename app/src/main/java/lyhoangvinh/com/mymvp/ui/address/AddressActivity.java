@@ -49,7 +49,7 @@ public class AddressActivity extends BaseActivity implements AddressView {
         rcv.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         rcv.setLayoutManager(layoutManager);
-        if (Functions.getUser() != null){
+        if (Functions.getUser() != null) {
             tv.setText(Functions.getUser().getFullName());
         }
     }
@@ -74,13 +74,13 @@ public class AddressActivity extends BaseActivity implements AddressView {
 
     @Optional
     @OnClick(R.id.btnRx)
-    public void rxJavaGetData(){
+    public void rxJavaGetData() {
         presenter.loadDataRx();
     }
 
     @Optional
     @OnClick(R.id.btnLogout)
-    public void logout(){
+    public void logout() {
         Functions.clearData();
         startActivity(new Intent(AddressActivity.this, LoginActivity.class));
         finish();
@@ -98,6 +98,9 @@ public class AddressActivity extends BaseActivity implements AddressView {
     protected void onDestroy() {
         super.onDestroy();
         realm.close();
+        if (presenter != null){
+            presenter.onDestroy();
+        }
     }
 
     private void saveToDatabase(List<Address> list) {
@@ -150,5 +153,4 @@ public class AddressActivity extends BaseActivity implements AddressView {
             presenter.loadDataRetrofit();
         }
     }
-
 }

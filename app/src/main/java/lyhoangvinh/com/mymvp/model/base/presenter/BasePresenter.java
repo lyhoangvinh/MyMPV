@@ -1,6 +1,7 @@
 package lyhoangvinh.com.mymvp.model.base.presenter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -11,6 +12,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import lyhoangvinh.com.mymvp.callback.AddressCallback;
 import lyhoangvinh.com.mymvp.callback.TankRunnable;
+import lyhoangvinh.com.mymvp.interfaces.Lifecycle;
 import lyhoangvinh.com.mymvp.listener.OnResponseListener;
 import lyhoangvinh.com.mymvp.listener.OnResponseListenerTest;
 import lyhoangvinh.com.mymvp.model.base.api.retrofit.ApiClient;
@@ -33,7 +35,7 @@ import retrofit2.Response;
 /**
  * Created by LyHoangVinh on 25/03/2018.
  */
-public class BasePresenter<V extends BaseView> {
+public class BasePresenter<V extends BaseView> implements Lifecycle{
 
     @Nullable
     private V mView;
@@ -182,6 +184,8 @@ public class BasePresenter<V extends BaseView> {
     }
 
 
+
+
     protected void addRequestTest(Single<ResponseTest> request, boolean showProgress,
                                   OnResponseListenerTest listener) {
         addRequestTest(request, showProgress, false, listener, null);
@@ -230,6 +234,36 @@ public class BasePresenter<V extends BaseView> {
                 getView().hideLoading();
             }
         });
+    }
+
+    @Override
+    public void onCreate() {
+
+    }
+
+    @Override
+    public void onStart() {
+
+    }
+
+    @Override
+    public void onStop() {
+
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    public void onDestroy() {
+        mCompositeDisposable.dispose();
     }
     //----------------------------------End-Volley----------------------------------------------------------
 }

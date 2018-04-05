@@ -65,6 +65,7 @@ public abstract class BasePresenterActivity<P extends BasePresenter, V extends B
     protected void onDestroy() {
         super.onDestroy();
         if (presenter != null) {
+            presenter.onDestroy();
         }
     }
 
