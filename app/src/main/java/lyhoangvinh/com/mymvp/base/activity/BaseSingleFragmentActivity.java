@@ -13,7 +13,7 @@ import butterknife.BindView;
 import lyhoangvinh.com.mymvp.R;
 import lyhoangvinh.com.mymvp.base.fragment.BaseFragment;
 
-public abstract class BaseSingleFragmentActivity<T extends BaseFragment> extends lyhoangvinh.com.mymvp.model.base.activity.BaseActivity {
+public abstract class BaseSingleFragmentActivity<T extends BaseFragment> extends BaseActivity {
 
     @BindView(R.id.toolbar)
     @Nullable
