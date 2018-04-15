@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import lyhoangvinh.com.mymvp.R;
 import lyhoangvinh.com.mymvp.ui.address.AddressActivity;
 import lyhoangvinh.com.mymvp.ui.login.LoginActivity;
-import lyhoangvinh.com.mymvp.utils.Functions;
+import lyhoangvinh.com.mymvp.utils.crop.Functions;
 
 public class SplashActivity extends AppCompatActivity {
 

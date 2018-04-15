@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import lyhoangvinh.com.mymvp.Constant.ConstantsApi;
-import lyhoangvinh.com.mymvp.utils.Functions;
+import lyhoangvinh.com.mymvp.utils.crop.Functions;
 
 /**
  * Created by LyHoangVinh on 21/03/2018.

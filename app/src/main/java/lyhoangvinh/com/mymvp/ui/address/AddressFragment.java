@@ -19,7 +19,7 @@ import lyhoangvinh.com.mymvp.base.fragment.BaseFragment;
 import lyhoangvinh.com.mymvp.model.Address;
 import lyhoangvinh.com.mymvp.ui.adapter.AddressAdapter;
 import lyhoangvinh.com.mymvp.ui.login.LoginActivity;
-import lyhoangvinh.com.mymvp.utils.Functions;
+import lyhoangvinh.com.mymvp.utils.crop.Functions;
 
 /**
  * Created by LyHoangVinh on 15/04/2018.

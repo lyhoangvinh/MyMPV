@@ -4,7 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import lyhoangvinh.com.mymvp.base.presenter.BasePresenter;
 import lyhoangvinh.com.mymvp.base.request.LoginRequest;
-import lyhoangvinh.com.mymvp.utils.Functions;
+import lyhoangvinh.com.mymvp.utils.crop.Functions;
 
 /**
  * Created by LyHoangVinh on 01/04/2018.

@@ -7,7 +7,7 @@ import lyhoangvinh.com.mymvp.base.presenter.BasePresenter;
 import lyhoangvinh.com.mymvp.base.request.BaseRequest;
 import lyhoangvinh.com.mymvp.base.response.BaseResponse;
 import lyhoangvinh.com.mymvp.model.Data;
-import lyhoangvinh.com.mymvp.utils.Functions;
+import lyhoangvinh.com.mymvp.utils.crop.Functions;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
