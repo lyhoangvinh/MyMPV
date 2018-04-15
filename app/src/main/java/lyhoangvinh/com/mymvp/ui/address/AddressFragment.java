@@ -24,7 +24,7 @@ import lyhoangvinh.com.mymvp.utils.crop.Functions;
 /**
  * Created by LyHoangVinh on 15/04/2018.
  */
-public class AddressFragment extends BaseFragment implements AddressView{
+public class AddressFragment extends BaseFragment implements AddressView {
 
     @BindView(R.id.rcvAddress)
     RecyclerView rcv;
@@ -141,6 +141,14 @@ public class AddressFragment extends BaseFragment implements AddressView{
             }
         } else {
             presenter.loadDataRetrofit();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (presenter != null) {
+            presenter.onDestroy();
         }
     }
 }

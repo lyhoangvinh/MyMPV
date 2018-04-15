@@ -68,4 +68,12 @@ public class LoginFragment extends BaseFragment implements LoginView {
     public void loginFaild(String message) {
 
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (presenter != null) {
+            presenter.onDestroy();
+        }
+    }
 }
