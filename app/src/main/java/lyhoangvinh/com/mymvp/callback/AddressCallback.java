@@ -2,7 +2,7 @@ package lyhoangvinh.com.mymvp.callback;
 
 import java.util.List;
 
-import lyhoangvinh.com.mymvp.model.object.Address;
+import lyhoangvinh.com.mymvp.model.Address;
 
 /**
  * Created by ADMIN on 11/29/2017.

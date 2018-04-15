@@ -13,7 +13,7 @@ import lyhoangvinh.com.mymvp.listener.OnResponseListenerTest;
 import lyhoangvinh.com.mymvp.model.base.response.BaseEntity;
 import lyhoangvinh.com.mymvp.model.base.response.BaseResponse;
 import lyhoangvinh.com.mymvp.model.base.view.ErrorEntity;
-import lyhoangvinh.com.mymvp.model.object.ResponseTest;
+import lyhoangvinh.com.mymvp.model.ResponseTest;
 
 /**
  * Created by lyhoangvinh on 9/10/17.

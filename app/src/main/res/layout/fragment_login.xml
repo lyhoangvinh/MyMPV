@@ -27,8 +27,11 @@
 
             <EditText
                 android:id="@+id/edtEmail"
+                android:shadowColor="@color/white"
                 style="@style/edt"
                 android:hint="@string/email"
+                android:textColorLink="@color/white"
+                android:textColorHighlight="@color/white"
                 android:inputType="textEmailAddress" />
         </android.support.design.widget.TextInputLayout>
 

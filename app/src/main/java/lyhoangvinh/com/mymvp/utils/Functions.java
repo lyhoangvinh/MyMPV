@@ -1,6 +1,6 @@
 package lyhoangvinh.com.mymvp.utils;
 
-import lyhoangvinh.com.mymvp.model.object.User;
+import lyhoangvinh.com.mymvp.model.User;
 import lyhoangvinh.com.mymvp.utils.crop.SharedPrefs;
 
 /**

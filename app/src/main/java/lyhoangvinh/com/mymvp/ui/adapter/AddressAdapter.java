@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import lyhoangvinh.com.mymvp.R;
-import lyhoangvinh.com.mymvp.model.object.Address;
+import lyhoangvinh.com.mymvp.model.Address;
 
 /**
  * Created by LyHoangVinh on 22/03/2018.

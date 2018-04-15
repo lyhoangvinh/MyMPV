@@ -1,4 +1,4 @@
-package lyhoangvinh.com.mymvp.model.object;
+package lyhoangvinh.com.mymvp.model;
 
 import io.realm.RealmObject;
 import lombok.AllArgsConstructor;

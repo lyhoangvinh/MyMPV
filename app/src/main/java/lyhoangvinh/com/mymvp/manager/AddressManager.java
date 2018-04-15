@@ -1,6 +1,6 @@
 package lyhoangvinh.com.mymvp.manager;
 
-import lyhoangvinh.com.mymvp.model.object.Address;
+import lyhoangvinh.com.mymvp.model.Address;
 
 /**
  * Created by LyHoangVinh on 25/03/2018.

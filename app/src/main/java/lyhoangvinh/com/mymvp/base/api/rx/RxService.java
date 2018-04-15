@@ -4,9 +4,9 @@ import io.reactivex.Single;
 import lyhoangvinh.com.mymvp.model.base.request.BaseRequest;
 import lyhoangvinh.com.mymvp.model.base.request.LoginRequest;
 import lyhoangvinh.com.mymvp.model.base.response.BaseResponse;
-import lyhoangvinh.com.mymvp.model.object.Data;
-import lyhoangvinh.com.mymvp.model.object.ResponseTest;
-import lyhoangvinh.com.mymvp.model.object.User;
+import lyhoangvinh.com.mymvp.model.Data;
+import lyhoangvinh.com.mymvp.model.ResponseTest;
+import lyhoangvinh.com.mymvp.model.User;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 

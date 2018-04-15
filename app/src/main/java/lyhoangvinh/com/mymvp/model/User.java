@@ -1,4 +1,4 @@
-package lyhoangvinh.com.mymvp.model.object;
+package lyhoangvinh.com.mymvp.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
