@@ -1,4 +1,4 @@
-package lyhoangvinh.com.mymvp.model.base.fragment;
+package lyhoangvinh.com.mymvp.base.fragment;
 
 import android.app.Dialog;
 import android.content.Context;

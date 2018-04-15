@@ -1,4 +1,4 @@
-package lyhoangvinh.com.mymvp.model.base.activity;
+package lyhoangvinh.com.mymvp.base.activity;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -18,8 +18,8 @@ import android.widget.TextView;
 
 import butterknife.ButterKnife;
 import lyhoangvinh.com.mymvp.R;
+import lyhoangvinh.com.mymvp.base.view.BaseView;
 import lyhoangvinh.com.mymvp.dagger.component.ActivityComponent;
-import lyhoangvinh.com.mymvp.model.base.view.BaseView;
 import lyhoangvinh.com.mymvp.thread.UIThreadExecutor;
 import lyhoangvinh.com.mymvp.ui.customview.SimpleToast;
 

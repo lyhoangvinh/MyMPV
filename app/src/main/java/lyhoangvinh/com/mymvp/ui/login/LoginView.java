@@ -1,6 +1,7 @@
 package lyhoangvinh.com.mymvp.ui.login;
 
-import lyhoangvinh.com.mymvp.model.base.view.BaseView;
+
+import lyhoangvinh.com.mymvp.base.view.BaseView;
 
 /**
  * Created by LyHoangVinh on 01/04/2018.

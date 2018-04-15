@@ -1,4 +1,4 @@
-package lyhoangvinh.com.mymvp.model.base.api.rx;
+package lyhoangvinh.com.mymvp.base.api.rx;
 
 import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;

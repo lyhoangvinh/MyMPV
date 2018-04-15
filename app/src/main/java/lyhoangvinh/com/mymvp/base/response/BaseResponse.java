@@ -1,7 +1,7 @@
-package lyhoangvinh.com.mymvp.model.base.response;
-
+package lyhoangvinh.com.mymvp.base.response;
 
 import lyhoangvinh.com.mymvp.Constant.ConstantsApi;
+
 
 public class BaseResponse<T> extends BaseEntity<T> {
 

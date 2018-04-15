@@ -7,7 +7,7 @@ import android.widget.EditText;
 import butterknife.BindView;
 import butterknife.OnClick;
 import lyhoangvinh.com.mymvp.R;
-import lyhoangvinh.com.mymvp.model.base.fragment.BaseFragment;
+import lyhoangvinh.com.mymvp.base.fragment.BaseFragment;
 import lyhoangvinh.com.mymvp.ui.address.AddressActivity;
 
 /**

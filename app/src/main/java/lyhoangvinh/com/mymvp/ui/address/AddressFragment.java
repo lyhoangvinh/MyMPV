@@ -15,7 +15,7 @@ import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
 import lyhoangvinh.com.mymvp.R;
-import lyhoangvinh.com.mymvp.model.base.fragment.BaseFragment;
+import lyhoangvinh.com.mymvp.base.fragment.BaseFragment;
 import lyhoangvinh.com.mymvp.model.Address;
 import lyhoangvinh.com.mymvp.ui.adapter.AddressAdapter;
 import lyhoangvinh.com.mymvp.ui.login.LoginActivity;

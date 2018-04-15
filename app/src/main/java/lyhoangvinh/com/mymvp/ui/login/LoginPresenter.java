@@ -2,9 +2,8 @@ package lyhoangvinh.com.mymvp.ui.login;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-
-import lyhoangvinh.com.mymvp.model.base.presenter.BasePresenter;
-import lyhoangvinh.com.mymvp.model.base.request.LoginRequest;
+import lyhoangvinh.com.mymvp.base.presenter.BasePresenter;
+import lyhoangvinh.com.mymvp.base.request.LoginRequest;
 import lyhoangvinh.com.mymvp.utils.Functions;
 
 /**

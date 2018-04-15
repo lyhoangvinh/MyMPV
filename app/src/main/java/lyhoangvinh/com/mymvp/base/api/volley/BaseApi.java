@@ -1,4 +1,4 @@
-package lyhoangvinh.com.mymvp.model.base.api.volley;
+package lyhoangvinh.com.mymvp.base.api.volley;
 
 import android.content.Context;
 
@@ -42,6 +42,6 @@ public class BaseApi {
                 return params;
             }
         };
-        VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
+        lyhoangvinh.com.mymvp.model.base.api.volley.VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
     }
 }

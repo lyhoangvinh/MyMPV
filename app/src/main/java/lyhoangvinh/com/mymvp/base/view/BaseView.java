@@ -1,4 +1,4 @@
-package lyhoangvinh.com.mymvp.model.base.view;
+package lyhoangvinh.com.mymvp.base.view;
 
 /**
  * Created by air on 5/20/17.

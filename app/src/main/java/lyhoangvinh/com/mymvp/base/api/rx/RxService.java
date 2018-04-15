@@ -1,9 +1,9 @@
-package lyhoangvinh.com.mymvp.model.base.api.rx;
+package lyhoangvinh.com.mymvp.base.api.rx;
 
 import io.reactivex.Single;
-import lyhoangvinh.com.mymvp.model.base.request.BaseRequest;
-import lyhoangvinh.com.mymvp.model.base.request.LoginRequest;
-import lyhoangvinh.com.mymvp.model.base.response.BaseResponse;
+import lyhoangvinh.com.mymvp.base.request.BaseRequest;
+import lyhoangvinh.com.mymvp.base.request.LoginRequest;
+import lyhoangvinh.com.mymvp.base.response.BaseResponse;
 import lyhoangvinh.com.mymvp.model.Data;
 import lyhoangvinh.com.mymvp.model.ResponseTest;
 import lyhoangvinh.com.mymvp.model.User;

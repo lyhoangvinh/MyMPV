@@ -1,4 +1,4 @@
-package lyhoangvinh.com.mymvp.model.base.api.utils;
+package lyhoangvinh.com.mymvp.base.api.utils;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,11 +8,11 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import lyhoangvinh.com.mymvp.Constant.ConstantsApi;
+import lyhoangvinh.com.mymvp.base.response.BaseEntity;
+import lyhoangvinh.com.mymvp.base.response.BaseResponse;
+import lyhoangvinh.com.mymvp.base.view.ErrorEntity;
 import lyhoangvinh.com.mymvp.listener.OnResponseListener;
 import lyhoangvinh.com.mymvp.listener.OnResponseListenerTest;
-import lyhoangvinh.com.mymvp.model.base.response.BaseEntity;
-import lyhoangvinh.com.mymvp.model.base.response.BaseResponse;
-import lyhoangvinh.com.mymvp.model.base.view.ErrorEntity;
 import lyhoangvinh.com.mymvp.model.ResponseTest;
 
 /**

@@ -3,9 +3,9 @@ package lyhoangvinh.com.mymvp.ui.address;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import lyhoangvinh.com.mymvp.model.base.presenter.BasePresenter;
-import lyhoangvinh.com.mymvp.model.base.request.BaseRequest;
-import lyhoangvinh.com.mymvp.model.base.response.BaseResponse;
+import lyhoangvinh.com.mymvp.base.presenter.BasePresenter;
+import lyhoangvinh.com.mymvp.base.request.BaseRequest;
+import lyhoangvinh.com.mymvp.base.response.BaseResponse;
 import lyhoangvinh.com.mymvp.model.Data;
 import lyhoangvinh.com.mymvp.utils.Functions;
 import retrofit2.Call;

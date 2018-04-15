@@ -1,4 +1,4 @@
-package lyhoangvinh.com.mymvp.model.base.view;
+package lyhoangvinh.com.mymvp.base.view;
 
 import org.json.JSONObject;
 

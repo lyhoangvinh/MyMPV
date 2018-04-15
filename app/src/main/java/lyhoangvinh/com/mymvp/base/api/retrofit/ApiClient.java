@@ -1,4 +1,4 @@
-package lyhoangvinh.com.mymvp.model.base.api.retrofit;
+package lyhoangvinh.com.mymvp.base.api.retrofit;
 
 import lyhoangvinh.com.mymvp.Constant.ConstantsApi;
 import retrofit2.Retrofit;

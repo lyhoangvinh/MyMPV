@@ -1,8 +1,7 @@
 package lyhoangvinh.com.mymvp.ui.address;
 
 import java.util.List;
-
-import lyhoangvinh.com.mymvp.model.base.view.BaseView;
+import lyhoangvinh.com.mymvp.base.view.BaseView;
 import lyhoangvinh.com.mymvp.model.Address;
 
 /**

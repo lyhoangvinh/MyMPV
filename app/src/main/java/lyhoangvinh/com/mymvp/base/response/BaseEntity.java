@@ -1,4 +1,4 @@
-package lyhoangvinh.com.mymvp.model.base.response;
+package lyhoangvinh.com.mymvp.base.response;
 
 public abstract class BaseEntity<T> {
 
