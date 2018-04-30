@@ -1,6 +1,7 @@
 package lyhoangvinh.com.mymvp.utils.crop;
 
 import lyhoangvinh.com.mymvp.model.User;
+import lyhoangvinh.com.mymvp.model.UserGithub;
 import lyhoangvinh.com.mymvp.utils.dbhelper.SharedPrefs;
 
 /**
@@ -9,6 +10,7 @@ import lyhoangvinh.com.mymvp.utils.dbhelper.SharedPrefs;
 public class Functions {
 
     private static final String USER_NAME = "USERNAME";
+    private static final String GITHUB_USER = "GITHUB_USER";
 
     public static void saveUser(User user) {
         SharedPrefs.getInstance().put(USER_NAME, user);
@@ -19,9 +21,7 @@ public class Functions {
     }
 
     public static void clearData() {
-        if (getUser() != null) {
-            SharedPrefs.getInstance().clear();
-        }
+        SharedPrefs.getInstance().clear();
     }
 
     public static boolean checkUser() {
@@ -30,5 +30,13 @@ public class Functions {
         } else {
             return true;
         }
+    }
+
+    public static void saveGithus(UserGithub userGithub) {
+        SharedPrefs.getInstance().put(GITHUB_USER, userGithub);
+    }
+
+    public static UserGithub getUserGithub() {
+        return SharedPrefs.getInstance().get(GITHUB_USER, UserGithub.class);
     }
 }

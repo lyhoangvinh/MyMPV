@@ -3,6 +3,7 @@ package lyhoangvinh.com.mymvp.ui.address;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import io.realm.RealmList;
 import io.realm.RealmResults;
 import lyhoangvinh.com.mymvp.R;
 import lyhoangvinh.com.mymvp.base.fragment.BaseFragment;
+import lyhoangvinh.com.mymvp.base.view.ErrorEntity;
 import lyhoangvinh.com.mymvp.model.Address;
 import lyhoangvinh.com.mymvp.ui.adapter.AddressAdapter;
 import lyhoangvinh.com.mymvp.ui.login.LoginActivity;
@@ -41,7 +43,7 @@ public class AddressFragment extends BaseFragment implements AddressView {
     }
 
     @Override
-    protected void bind() {
+    protected void bind(View view) {
         realm = Realm.getDefaultInstance();
         presenter = new AddressPresenter(getActivity(), this);
         assert rcv != null;
@@ -150,6 +152,11 @@ public class AddressFragment extends BaseFragment implements AddressView {
         if (presenter != null) {
             presenter.onDestroy();
         }
+    }
+
+    @Override
+    public void onError(ErrorEntity errorEntity) {
+
     }
 }
 

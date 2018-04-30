@@ -2,8 +2,10 @@ package lyhoangvinh.com.mymvp.ui.login;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+
 import lyhoangvinh.com.mymvp.base.presenter.BasePresenter;
 import lyhoangvinh.com.mymvp.base.request.LoginRequest;
+import lyhoangvinh.com.mymvp.utils.StringUtils;
 import lyhoangvinh.com.mymvp.utils.crop.Functions;
 
 /**
@@ -30,6 +32,17 @@ public class LoginPresenter extends BasePresenter<LoginView> implements IPresent
         addRequestTest(getRxService().loginTest(new LoginRequest(email, password)), true, t -> {
             if (getView() != null && t.getStatus() != null) {
                 getView().loginSuccess(t.getStatus());
+            }
+        });
+    }
+
+    @Override
+    public void githubLogin(String email, String password) {
+        String basicAuth = StringUtils.getBasicAuth(email, password);
+        addRequest(true, getGitHubService().login(basicAuth), userGithub -> {
+            if (getView() != null) {
+                getView().loginSuccess(userGithub.getName());
+                Functions.saveGithus(userGithub);
             }
         });
     }

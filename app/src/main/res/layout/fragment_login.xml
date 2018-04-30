@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/txt_black_55_hint"
+    android:orientation="vertical"
     tools:context="lyhoangvinh.com.mymvp.ui.login.LoginActivity">
 
     <ImageView
-        android:layout_marginTop="@dimen/dm_80dp"
+        style="@style/img"
         android:layout_gravity="center"
-        android:src="@mipmap/ic_launcher"
-        style="@style/img" />
+        android:layout_marginTop="@dimen/dm_80dp"
+        android:src="@mipmap/ic_launcher" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,12 +27,12 @@
 
             <EditText
                 android:id="@+id/edtEmail"
-                android:shadowColor="@color/white"
                 style="@style/edt"
                 android:hint="@string/email"
-                android:textColorLink="@color/white"
+                android:inputType="textEmailAddress"
+                android:shadowColor="@color/white"
                 android:textColorHighlight="@color/white"
-                android:inputType="textEmailAddress" />
+                android:textColorLink="@color/white" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -56,4 +56,17 @@
                 android:text="@string/login" />
         </android.support.design.widget.CoordinatorLayout>
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            style="@style/txt"
+            android:layout_alignParentBottom="true"
+            android:fontFamily="casual"
+            android:text="@string/my_name"
+            android:textAlignment="viewEnd"
+            android:textSize="@dimen/txt_15sp" />
+    </RelativeLayout>
 </LinearLayout>

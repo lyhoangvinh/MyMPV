@@ -7,13 +7,13 @@ import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import lyhoangvinh.com.mymvp.Constant.ConstantsApi;
+import lyhoangvinh.com.mymvp.constant.ConstantsApi;
 import lyhoangvinh.com.mymvp.base.response.BaseEntity;
 import lyhoangvinh.com.mymvp.base.response.BaseResponse;
 import lyhoangvinh.com.mymvp.base.view.ErrorEntity;
 import lyhoangvinh.com.mymvp.listener.OnResponseListener;
 import lyhoangvinh.com.mymvp.listener.OnResponseListenerTest;
-import lyhoangvinh.com.mymvp.model.ResponseTest;
+import lyhoangvinh.com.mymvp.base.response.ResponseTest;
 
 /**
  * Created by lyhoangvinh on 9/10/17.

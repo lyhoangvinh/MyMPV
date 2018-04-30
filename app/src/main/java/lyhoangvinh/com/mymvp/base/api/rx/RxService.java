@@ -3,9 +3,10 @@ package lyhoangvinh.com.mymvp.base.api.rx;
 import io.reactivex.Single;
 import lyhoangvinh.com.mymvp.base.request.BaseRequest;
 import lyhoangvinh.com.mymvp.base.request.LoginRequest;
+import lyhoangvinh.com.mymvp.base.request.ProfileRequest;
 import lyhoangvinh.com.mymvp.base.response.BaseResponse;
+import lyhoangvinh.com.mymvp.base.response.ResponseTest;
 import lyhoangvinh.com.mymvp.model.Data;
-import lyhoangvinh.com.mymvp.model.ResponseTest;
 import lyhoangvinh.com.mymvp.model.User;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -23,4 +24,8 @@ public interface RxService {
 
     @POST("user/login")
     Single<ResponseTest> loginTest(@Body LoginRequest request);
+
+    @POST("user/update")
+    Single<ResponseTest> update(@Body ProfileRequest request);
+
 }

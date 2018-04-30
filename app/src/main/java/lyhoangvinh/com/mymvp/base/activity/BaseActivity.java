@@ -19,6 +19,7 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import lyhoangvinh.com.mymvp.R;
 import lyhoangvinh.com.mymvp.base.view.BaseView;
+import lyhoangvinh.com.mymvp.base.view.ErrorEntity;
 import lyhoangvinh.com.mymvp.dagger.component.ActivityComponent;
 import lyhoangvinh.com.mymvp.thread.UIThreadExecutor;
 import lyhoangvinh.com.mymvp.ui.customview.SimpleToast;
@@ -190,5 +191,10 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         if (message != null) {
             showToastError(message);
         }
+    }
+
+    @Override
+    public void onError(ErrorEntity errorEntity) {
+
     }
 }

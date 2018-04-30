@@ -6,4 +6,5 @@ package lyhoangvinh.com.mymvp.ui.login;
 public interface IPresenterLogin {
     void userLoginRx(String email, String password);
     void userLoginTest(String email, String password);
+    void githubLogin(String email, String password);
 }

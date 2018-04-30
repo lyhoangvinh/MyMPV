@@ -17,7 +17,8 @@ import android.widget.TextView;
 
 import butterknife.ButterKnife;
 import lyhoangvinh.com.mymvp.R;
-import lyhoangvinh.com.mymvp.model.base.view.BaseView;
+import lyhoangvinh.com.mymvp.base.view.BaseView;
+import lyhoangvinh.com.mymvp.base.view.ErrorEntity;
 import lyhoangvinh.com.mymvp.thread.UIThreadExecutor;
 import lyhoangvinh.com.mymvp.ui.customview.SimpleToast;
 
@@ -41,7 +42,7 @@ public abstract class BaseFragment extends Fragment implements BaseView {
         this.TAG = TAG;
     }
 
-    protected abstract void bind();
+    protected abstract void bind(View view);
 
     @Nullable
     @Override
@@ -53,9 +54,9 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        bind();
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        bind(view);
     }
 
     public void showProgressDialog(boolean cancelable) {
@@ -165,6 +166,11 @@ public abstract class BaseFragment extends Fragment implements BaseView {
         if (message != null) {
             showToastError(message);
         }
+    }
+
+    @Override
+    public void onError(ErrorEntity errorEntity) {
+
     }
 
     public boolean onBackPressed() {

@@ -15,14 +15,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Data {
-    public String firstname;
-    public String lastname;
-    public String fbid;
-    public String firebaseId;
-    public String email;
-    public String emailverified;
-    public String mobile;
-    public String mobileverified;
-    public String picture;
+    public User user;
     public List<Address> address;
 }

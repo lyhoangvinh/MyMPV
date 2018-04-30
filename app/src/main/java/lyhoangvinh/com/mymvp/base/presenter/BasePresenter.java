@@ -10,13 +10,17 @@ import java.util.List;
 import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import lyhoangvinh.com.mymvp.base.api.github.GithubClient;
+import lyhoangvinh.com.mymvp.base.api.github.GithubService;
 import lyhoangvinh.com.mymvp.base.api.retrofit.ApiClient;
 import lyhoangvinh.com.mymvp.base.api.retrofit.ApiService;
 import lyhoangvinh.com.mymvp.base.api.rx.RxClient;
 import lyhoangvinh.com.mymvp.base.api.rx.RxService;
 import lyhoangvinh.com.mymvp.base.api.utils.ApiUtils;
+import lyhoangvinh.com.mymvp.base.api.utils.GithubApiUtils;
 import lyhoangvinh.com.mymvp.base.api.volley.BaseApi;
 import lyhoangvinh.com.mymvp.base.response.BaseResponse;
+import lyhoangvinh.com.mymvp.base.response.ResponseTest;
 import lyhoangvinh.com.mymvp.base.view.BaseView;
 import lyhoangvinh.com.mymvp.base.view.ErrorEntity;
 import lyhoangvinh.com.mymvp.callback.AddressCallback;
@@ -25,7 +29,6 @@ import lyhoangvinh.com.mymvp.interfaces.Lifecycle;
 import lyhoangvinh.com.mymvp.listener.OnResponseListener;
 import lyhoangvinh.com.mymvp.listener.OnResponseListenerTest;
 import lyhoangvinh.com.mymvp.model.Address;
-import lyhoangvinh.com.mymvp.model.ResponseTest;
 import lyhoangvinh.com.mymvp.thread.BackgroundThreadExecutor;
 import lyhoangvinh.com.mymvp.thread.UIThreadExecutor;
 import retrofit2.Call;
@@ -61,6 +64,10 @@ public class BasePresenter<V extends BaseView> implements Lifecycle{
         return ApiClient.getInstance().create(ApiService.class);
     }
 
+    protected GithubService getGitHubService(){
+        return GithubClient.getInstance().create(GithubService.class);
+    }
+
     private BaseApi getBaseApiVolley() {
         return BaseApi.getInstance(context);
     }
@@ -68,6 +75,53 @@ public class BasePresenter<V extends BaseView> implements Lifecycle{
     protected RxService getRxService() {
         return RxClient.getInstance().create(RxService.class);
     }
+
+    //----------------------------------Githus----------------------------------------------------
+    protected <T> void addRequest(
+            Single<Response<T>> request, boolean showProgress,
+            boolean forceResponseWithoutCheckNullView,
+            @Nullable OnResponseListener<T> responseConsumer,
+            @Nullable OnResponseListener<ErrorEntity> errorConsumer) {
+
+        boolean shouldUpdateUI = showProgress || responseConsumer != null || errorConsumer != null;
+
+        if (showProgress && getView() != null) {
+            getView().showLoading();
+        }
+
+        Disposable disposable = GithubApiUtils.makeRequest(request, shouldUpdateUI, response -> {
+            if (responseConsumer != null && (forceResponseWithoutCheckNullView || mView != null)) {
+                responseConsumer.onRespond(response);
+            }
+        }, error -> {
+            if (errorConsumer != null) {
+                errorConsumer.onRespond(error);
+            } else if (mView != null) {
+                getView().onError(error);
+            }
+        }, () -> {
+            // complete
+            if (showProgress && getView() != null) {
+                getView().hideLoading();
+            }
+        });
+
+        if (mCompositeDisposable.isDisposed()) {
+            mCompositeDisposable = new CompositeDisposable();
+        }
+        mCompositeDisposable.add(disposable);
+    }
+
+
+    /**
+     * Add a request with success listener
+     */
+    protected <T> void addRequest(boolean showProgress,Single<Response<T>> request,
+                                  @Nullable OnResponseListener<T> responseConsumer) {
+        addRequest(request, showProgress, false, responseConsumer, null);
+    }
+    //----------------------------------End-Githus----------------------------------------------------
+
 
     //----------------------------------Retrofit----------------------------------------------------
 

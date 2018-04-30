@@ -1,4 +1,4 @@
-package lyhoangvinh.com.mymvp.base.api.rx;
+package lyhoangvinh.com.mymvp.base.api.github;
 
 import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -10,10 +10,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by LyHoangVinh on 01/04/2018.
+ * Created by LyHoangVinh on 01/05/2018.
  */
-public class RxClient {
-
+public class GithubClient {
     private static Retrofit retrofit;
 
     public static <T> T makeService(Class<T> serviceClass, String baseUrl, Gson gson, OkHttpClient okHttpClient) {
@@ -29,7 +28,7 @@ public class RxClient {
     public static Retrofit getInstance(){
         if (retrofit == null){
             retrofit = new Retrofit.Builder()
-                    .baseUrl(ConstantsApi.BASE_URL)
+                    .baseUrl(ConstantsApi.GITHUB_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
                     .build();

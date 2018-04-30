@@ -1,6 +1,6 @@
 package lyhoangvinh.com.mymvp.base.api.retrofit;
 
-import lyhoangvinh.com.mymvp.Constant.ConstantsApi;
+import lyhoangvinh.com.mymvp.constant.ConstantsApi;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

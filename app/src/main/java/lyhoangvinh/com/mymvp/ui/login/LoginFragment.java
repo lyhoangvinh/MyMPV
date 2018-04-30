@@ -1,14 +1,13 @@
 package lyhoangvinh.com.mymvp.ui.login;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import lyhoangvinh.com.mymvp.R;
 import lyhoangvinh.com.mymvp.base.fragment.BaseFragment;
-import lyhoangvinh.com.mymvp.ui.address.AddressActivity;
 
 /**
  * Created by LyHoangVinh on 15/04/2018.
@@ -31,9 +30,10 @@ public class LoginFragment extends BaseFragment implements LoginView {
     }
 
     @Override
-    protected void bind() {
+    protected void bind(View view) {
         presenter = new LoginPresenter(getActivity(), this);
     }
+
 
     public static LoginFragment createInstance() {
         LoginFragment fragment = new LoginFragment();
@@ -51,7 +51,7 @@ public class LoginFragment extends BaseFragment implements LoginView {
         } else if (pass.length() == 0) {
             showError("Please Enter Password!");
         } else {
-            presenter.userLoginRx(email, pass);
+            presenter.githubLogin(email, pass);
         }
     }
 
@@ -59,8 +59,6 @@ public class LoginFragment extends BaseFragment implements LoginView {
     public void loginSuccess(String message) {
         if (getActivity() != null && message != null) {
             showToastOk(message);
-            startActivity(new Intent(getActivity(), AddressActivity.class));
-            getActivity().finish();
         }
     }
 

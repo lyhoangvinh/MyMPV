@@ -1,12 +1,12 @@
-package lyhoangvinh.com.mymvp.model.base.presenter;
+package lyhoangvinh.com.mymvp.base.presenter;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
 
 import lombok.Getter;
-import lyhoangvinh.com.mymvp.model.base.view.BaseView;
-import lyhoangvinh.com.mymvp.model.base.activity.BaseActivity;
+import lyhoangvinh.com.mymvp.base.activity.BaseActivity;
+import lyhoangvinh.com.mymvp.base.view.BaseView;
 
 /**
  * Created by LyHoangVinh on 25/03/2018.

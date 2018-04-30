@@ -1,7 +1,8 @@
-package lyhoangvinh.com.mymvp.model;
+package lyhoangvinh.com.mymvp.base.response;
 
 import lombok.Getter;
 import lombok.Setter;
+import lyhoangvinh.com.mymvp.model.Data;
 
 /**
  * Created by LyHoangVinh on 01/04/2018.
