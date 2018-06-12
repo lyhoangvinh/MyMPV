@@ -3,7 +3,7 @@ package lyhoangvinh.com.mymvp.interfaces;
 import android.os.Bundle;
 
 /**
- * Created by duypham on 9/10/17.
+ * Created by vinh on 9/10/17.
  */
 
 public interface Lifecycle extends Destroyable{
