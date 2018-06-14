@@ -147,7 +147,7 @@ public final class ApiUtils {
                     }
                 });
     }
-}
+
 
     public static <T extends BaseEntity> Disposable makeRequest(Single<BaseResponse<T>> request, boolean shouldUpdateUi, @NonNull OnResponseListener<T> responseConsumer) {
         return makeRequest(request, shouldUpdateUi, responseConsumer, null);
