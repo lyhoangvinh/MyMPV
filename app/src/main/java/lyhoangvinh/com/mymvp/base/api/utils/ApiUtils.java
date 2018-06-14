@@ -6,14 +6,19 @@ import android.support.annotation.Nullable;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.BiFunction;
 import io.reactivex.schedulers.Schedulers;
-import lyhoangvinh.com.mymvp.constant.ConstantsApi;
 import lyhoangvinh.com.mymvp.base.response.BaseEntity;
 import lyhoangvinh.com.mymvp.base.response.BaseResponse;
+import lyhoangvinh.com.mymvp.base.response.ResponseTest;
+import lyhoangvinh.com.mymvp.base.response.ResponseZip;
 import lyhoangvinh.com.mymvp.base.view.ErrorEntity;
+import lyhoangvinh.com.mymvp.constant.ConstantsApi;
 import lyhoangvinh.com.mymvp.listener.OnResponseListener;
 import lyhoangvinh.com.mymvp.listener.OnResponseListenerTest;
-import lyhoangvinh.com.mymvp.base.response.ResponseTest;
+import lyhoangvinh.com.mymvp.listener.PlainConsumer;
+import retrofit2.Response;
 
 /**
  * Created by lyhoangvinh on 9/10/17.
@@ -97,6 +102,52 @@ public final class ApiUtils {
             }
         });
     }
+
+    public static <T1, T2> Disposable makeRequestZip(Single<Response<T1>> request1,
+                                                     Single<Response<T2>> request2, boolean shouldUpdateUi,
+                                                     @NonNull PlainConsumer<T1, T2> responseConsumer,
+                                                     @Nullable OnResponseListener<ErrorEntity> errorConsumer,
+                                                     @Nullable Action onComplete) {
+        Single<Response<T1>> single1 = request1.subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io());
+        Single<Response<T2>> single2 = request2.subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io());
+
+        if (shouldUpdateUi) {
+            single1 = single1.observeOn(AndroidSchedulers.mainThread());
+            single2 = single2.observeOn(AndroidSchedulers.mainThread());
+        }
+        return Single.zip(single1, single2, new BiFunction<Response<T1>, Response<T2>, ResponseZip<T1, T2>>() {
+            @Override
+            public ResponseZip<T1, T2> apply(Response<T1> t1BaseResponse, Response<T2> t2BaseResponse) {
+                ResponseZip<T1, T2> responseZip = new ResponseZip<>();
+                responseZip.setT1(t1BaseResponse);
+                responseZip.setT2(t2BaseResponse);
+                return responseZip;
+            }
+
+            @Override
+            protected Object clone() throws CloneNotSupportedException {
+                return super.clone();
+            }
+        }).subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(o -> {
+                    responseConsumer.accept(o);
+                    if (onComplete != null) {
+                        onComplete.run();
+                    }
+                }, throwable -> {
+                    // handle error
+                    throwable.printStackTrace();
+                    if (errorConsumer != null) {
+                        errorConsumer.onRespond(ErrorEntity.getError(throwable));
+                    }
+                    if (onComplete != null) {
+                        onComplete.run();
+                    }
+                });
+    }
+}
 
     public static <T extends BaseEntity> Disposable makeRequest(Single<BaseResponse<T>> request, boolean shouldUpdateUi, @NonNull OnResponseListener<T> responseConsumer) {
         return makeRequest(request, shouldUpdateUi, responseConsumer, null);

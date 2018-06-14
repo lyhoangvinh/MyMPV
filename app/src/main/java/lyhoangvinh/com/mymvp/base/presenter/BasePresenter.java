@@ -28,6 +28,7 @@ import lyhoangvinh.com.mymvp.callback.TankRunnable;
 import lyhoangvinh.com.mymvp.interfaces.Lifecycle;
 import lyhoangvinh.com.mymvp.listener.OnResponseListener;
 import lyhoangvinh.com.mymvp.listener.OnResponseListenerTest;
+import lyhoangvinh.com.mymvp.listener.PlainConsumer;
 import lyhoangvinh.com.mymvp.model.Address;
 import lyhoangvinh.com.mymvp.thread.BackgroundThreadExecutor;
 import lyhoangvinh.com.mymvp.thread.UIThreadExecutor;
@@ -320,4 +321,47 @@ public class BasePresenter<V extends BaseView> implements Lifecycle{
         mCompositeDisposable.dispose();
     }
     //----------------------------------End-Volley----------------------------------------------------------
+
+    //----------------------------------Zip()----------------------------------------------------------
+
+    protected <T1, T2> void addRequestZip(
+            Single<Response<T1>> request1,
+            Single<Response<T2>> request2,
+            boolean showProgress,
+            boolean forceResponseWithoutCheckNullView,
+            @Nullable PlainConsumer<T1, T2> responseConsumer,
+            @Nullable OnResponseListener<ErrorEntity> errorConsumer) {
+        boolean shouldUpdateUI = showProgress || responseConsumer != null || errorConsumer != null;
+        if (showProgress && getView() != null) {
+            getView().showLoading();
+        }
+
+        Disposable disposable = ApiUtils.makeRequestZip(request1, request2, shouldUpdateUI, var1 -> {
+            if (responseConsumer != null && (forceResponseWithoutCheckNullView || getView() != null)) {
+                responseConsumer.accept(var1);
+            }
+        }, error -> {
+            if (errorConsumer != null) {
+                errorConsumer.onRespond(error);
+            } else if (getView() != null) {
+                getView().onError(error);
+            }
+        }, () -> {
+            // complete
+            if (showProgress && getView() != null) {
+                getView().hideLoading();
+            }
+        });
+
+        if (mCompositeDisposable.isDisposed()) {
+            mCompositeDisposable = new CompositeDisposable();
+        }
+        mCompositeDisposable.add(disposable);
+    }
+
+    protected <T1, T2> void addRequestZip(boolean showProgress, Single<Response<T1>> request1,
+                                          Single<Response<T2>> request2, @Nullable PlainConsumer<T1, T2> responseConsumer) {
+        addRequestZip(request1, request2, showProgress, false, responseConsumer, null);
+    }
+
 }
