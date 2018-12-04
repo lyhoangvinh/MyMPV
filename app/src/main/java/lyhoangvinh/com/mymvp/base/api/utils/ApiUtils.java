@@ -152,4 +152,52 @@ public final class ApiUtils {
     public static <T extends BaseEntity> Disposable makeRequest(Single<BaseResponse<T>> request, boolean shouldUpdateUi, @NonNull OnResponseListener<T> responseConsumer) {
         return makeRequest(request, shouldUpdateUi, responseConsumer, null);
     }
+    
+        public static <T> Disposable makeListRequestMerge(List<Single<Response<T>>> singleList, boolean shouldUpdateUi,
+                                                      @NonNull PlainConsumer<T> responseConsumer1,
+                                                      @Nullable PlainConsumer<ErrorEntity> errorConsumer,
+                                                      @Nullable Action onComplete) {
+        List<Single<Response<T>>> newSingles = new ArrayList<>();
+        for (int i = 0; i < singleList.size(); i++) {
+            Single<Response<T>> single = singleList.get(i).subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io());
+            newSingles.add(single);
+        }
+        if (shouldUpdateUi) {
+            for (int i = 0; i < singleList.size(); i++) {
+                Single<Response<T>> single = singleList.get(i).observeOn(AndroidSchedulers.mainThread());
+                newSingles.add(single);
+            }
+        }
+
+        return Single.merge(newSingles).subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                    if (response.isSuccessful() && responseConsumer1 != null && response.body() != null) {
+                        responseConsumer1.accept(response.body());
+
+                    } else {
+                        if (errorConsumer != null) {
+                            errorConsumer.accept(ErrorEntity.getError(response.message()));
+                        }
+                    }
+
+                    if (onComplete != null) {
+                        onComplete.run();
+                    }
+                }, throwable -> {
+                    // handle error
+                    throwable.printStackTrace();
+                    if (errorConsumer != null) {
+                        errorConsumer.accept(ErrorEntity.getError(throwable));
+                    }
+                    if (onComplete != null) {
+                        onComplete.run();
+                    }
+                });
+    }
+
+    public static <T> Disposable makeListRequestMerge(List<Single<Response<T>>> singleList, boolean shouldUpdateUi,
+                                                      @NonNull PlainConsumer<T> responseConsumer,
+                                                      @Nullable PlainConsumer<ErrorEntity> errorConsumer) {
+        return makeListRequestMerge(singleList, shouldUpdateUi, responseConsumer, errorConsumer, null);
+    }
 }
